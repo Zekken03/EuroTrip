@@ -1,2 +1,1 @@
-# EuroTrip
-Guía de viaje para Europa
+Puede revisarlo aquí: https://games-now.skyzerozx.com/EuroTrip/EuroTrip/

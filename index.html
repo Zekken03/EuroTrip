@@ -1,0 +1,645 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Eurotrip - Tu Compañero de Viaje</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f2f5; /* Light gray background */
+            color: #333;
+        }
+    </style>
+    <!-- Google Maps API Script: Usa una variable de entorno o archivo de configuración local para cargar la clave en producción. -->
+    <!-- <script async defer src="https://maps.googleapis.com/maps/api/js?key=TU_API_KEY&callback=initFullItineraryMap"></script> -->
+</head>
+<body class="antialiased">
+    <header class="bg-gradient-to-r from-green-500 to-teal-500 text-white p-6 text-center shadow-lg rounded-b-xl">
+        <h1 class="text-4xl font-bold mb-2">Eurotrip 2025</h1>
+        <p class="text-xl font-light">Tu Compañero de Viaje Inteligente</p>
+    </header>
+
+    <nav class="sticky top-0 z-50 bg-gray-800 text-white py-3 shadow-md">
+        <div class="container mx-auto flex justify-center space-x-6 text-lg font-medium">
+            <a href="#itinerario" class="hover:text-green-300 transition duration-300">Itinerario</a>
+            <a href="#comida" class="hover:text-green-300 transition duration-300">Comida</a>
+            <a href="#consejos" class="hover:text-green-300 transition duration-300">Consejos</a>
+            <a href="#mapa-section" class="hover:text-green-300 transition duration-300">Mapa</a>
+            <a href="#ai" class="hover:text-green-300 transition duration-300">Compañero IA</a>
+        </div>
+    </nav>
+
+    <div class="container mx-auto p-4 md:p-8">
+        <h2 id="itinerario" class="text-3xl font-bold text-green-700 border-b-2 border-green-500 pb-2 mb-6 mt-8">Itinerario de Viaje</h2>
+
+        <!-- DÍA 1 -->
+        <div class="day-card bg-white p-6 mb-6 rounded-lg shadow-md cursor-pointer transform transition duration-300 hover:scale-105" onclick="toggleContent('day1')">
+            <h2 class="text-2xl font-semibold text-green-600 mb-2">DÍA 1: SÁBADO, 07/06 - Madrid</h2>
+            <div id="day1" class="day-content hidden pt-4 border-t border-gray-200 mt-4">
+                <p class="mb-3">¡Bienvenidos a Madrid! Traslado al hotel.</p>
+                <p class="text-yellow-700 italic mb-3">Recuerda que el check-in de los hoteles suele ser a las 14:00 hrs.</p>
+                <p class="mb-3">16:00 hrs: Visita panorámica de Madrid. Recorrido de unas dos horas y media con guía, conociendo puntos como Cibeles, Puerta de Alcalá (con Parque del Retiro), calle Serrano, Paseo de la Castellana, Plaza Colón, Paseo del Prado (Museo del Prado), Atocha, Palacio Real.</p>
+                <p class="mb-3">Incluye traslado a Plaza Mayor y acompañamiento del guía para ubicar mesones para cena o vinos. Cena incluida para viajeros con media pensión.</p>
+                <p class="mb-3">22:00 hrs: Regreso al hotel.</p>
+                <h3 class="text-xl font-medium text-gray-700 mb-2">Sugerencias para el tiempo libre:</h3>
+                <ul class="list-disc list-inside space-y-2">
+                    <li><span class="font-bold text-red-600">Mañana libre:</span> Parque del Retiro (inmenso, tomar fotos y relajarse). Alrededores del Palacio Real (cerca). Primark o tiendas tipo Zara (en Gran Vía). Calcular estar de regreso en el hotel a las 16:00 hrs. para el tour de las 17:00 hrs.</li>
+                    <li><span class="font-bold text-red-600">Después del tour (aprox. 19:00 hrs):</span> Chocolatería San Ginés (churros con chocolate tradicional). Puerta del Sol. El Oso y el Madroño (foto con la estatua). Caminar por la Gran Vía (desde Plaza Callao si es posible). Museo del Jamón (varios, para cenar).</li>
+                </ul>
+                <button class="map-button bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-md shadow-md mt-4 transition duration-300 ease-in-out" onclick="openMapSearch(event, 'Cibeles, Puerta de Alcalá, Parque del Retiro, Palacio Real, Plaza Mayor, Puerta del Sol, Gran Vía, Madrid')">Ver puntos en Mapa</button>
+            </div>
+        </div>
+
+        <!-- DÍA 2 -->
+        <div class="day-card bg-white p-6 mb-6 rounded-lg shadow-md cursor-pointer transform transition duration-300 hover:scale-105" onclick="toggleContent('day2')">
+            <h2 class="text-2xl font-semibold text-green-600 mb-2">DÍA 2: DOMINGO, 08/06 - Madrid (Excursión a Toledo)</h2>
+            <div id="day2" class="day-content hidden pt-4 border-t border-gray-200 mt-4">
+                <p class="mb-3">Resumen de etapa: Excursión a Toledo. Distancia total: 150 km.</p>
+                <p class="mb-3">08:00 hrs: Salida de Madrid. Llegada a Toledo (aprox. 09:00 hrs). El autocar realiza un circuito exterior (Cigarrales) con vistas panorámicas de la ciudad. El guía acompaña caminando hasta la Catedral. Tiempo libre para conocer la Catedral, pasear por el barrio antiguo y conocer la artesanía típica de Toledo.</p>
+                <p class="mb-3">14:30 hrs: Salida de Toledo.</p>
+                <p class="mb-3">15:30 hrs: Llegada a Madrid y tarde libre. Guía ofrecerá opcionalmente espectáculo flamenco.</p>
+                <h3 class="text-xl font-medium text-gray-700 mb-2">Sugerencias para el tiempo libre:</h3>
+                <ul class="list-disc list-inside space-y-2">
+                    <li><span class="font-bold text-red-600">Mañana libre en Toledo:</span> Caminar, pasear, tomar fotos.</li>
+                    <li><span class="font-bold text-red-600">Tarde libre en Madrid:</span> Coordinar con el guía para el espectáculo de flamenco (si no, tarde-noche libre). Mercado de San Miguel. Ir de compras: Primark, Zara, H&M. El Tigre (bar de tapas) – pedir tinto de verano (regalan tapas). Puerta de Alcalá.</li>
+                </ul>
+                <button class="map-button bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-md shadow-md mt-4 transition duration-300 ease-in-out" onclick="openMapSearch(event, 'Catedral de Toledo, Casco Antiguo Toledo, Mercado de San Miguel Madrid, Puerta de Alcalá Madrid')">Ver puntos en Mapa</button>
+            </div>
+        </div>
+
+        <!-- DÍA 3 -->
+        <div class="day-card bg-white p-6 mb-6 rounded-lg shadow-md cursor-pointer transform transition duration-300 hover:scale-105" onclick="toggleContent('day3')">
+            <h2 class="text-2xl font-semibold text-green-600 mb-2">DÍA 3: LUNES, 09/06 - Madrid, Zaragoza, Barcelona</h2>
+            <div id="day3" class="day-content hidden pt-4 border-t border-gray-200 mt-4">
+                <p class="mb-3">Distancia total: 640 km. Paisajes variados: abruptos, áridos, mediterráneos.</p>
+                <p class="mb-3">07:30 hrs: Salida de Madrid. Breve parada en el camino.</p>
+                <p class="mb-3">12:30 hrs: Llegada a Zaragoza. Guía hará orientación y los dejará junto a la Plaza del Pilar para visitar la basílica. Almuerzo incluido para pasajeros con media pensión.</p>
+                <p class="mb-3">14:15 hrs: Salida de Zaragoza.</p>
+                <p class="mb-3">18:30 hrs: Llegada a Barcelona. Breve visita con guía de la ciudad: Monumento a Colón, Plaza de Cataluña, Paseo de Gracia, Diagonal, Sagrada Familia (parada de minutos), Montjuic (instalaciones olímpicas), Plaza de España. Duración aproximada de visita: una hora y media. (Nota: La visita puede realizarse la mañana siguiente).</p>
+                <h3 class="text-xl font-medium text-gray-700 mb-2">Sugerencias para el tiempo libre:</h3>
+                <ul class="list-disc list-inside space-y-2">
+                    <li><span class="text-yellow-700 italic">No hay mucho tiempo libre, aprovechar el tour y tomar muchas fotos en la Sagrada Familia.</span></li>
+                </ul>
+                <button class="map-button bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-md shadow-md mt-4 transition duration-300 ease-in-out" onclick="openMapSearch(event, 'Plaza del Pilar Zaragoza, Monumento a Colón Barcelona, Plaza de Cataluña Barcelona, Sagrada Familia Barcelona, Montjuic Barcelona, Plaza de España Barcelona')">Ver puntos en Mapa</button>
+            </div>
+        </div>
+
+        <!-- DÍA 4 -->
+        <div class="day-card bg-white p-6 mb-6 rounded-lg shadow-md cursor-pointer transform transition duration-300 hover:scale-105" onclick="toggleContent('day4')">
+            <h2 class="text-2xl font-semibold text-green-600 mb-2">DÍA 4: MARTES, 10/06 - Barcelona, Costa Azul</h2>
+            <div id="day4" class="day-content hidden pt-4 border-t border-gray-200 mt-4">
+                <p class="mb-3">Distancia total: 650 km. Paisajes mediterráneos con vistas al mar.</p>
+                <p class="mb-3">Tiempo libre en Barcelona. Sugerencia: paseo por el Barrio Gótico, visitar la Catedral.</p>
+                <p class="mb-3">12:00 hrs: Salida de Barcelona hacia Francia. Parada en ruta para almorzar. Continuación por la región de la Provenza y la Costa Azul.</p>
+                <p class="mb-3">21:00 hrs: Llegada a Costa Azul. Alojamiento.</p>
+                <h3 class="text-xl font-medium text-gray-700 mb-2">Sugerencias para el tiempo libre:</h3>
+                <ul class="list-disc list-inside space-y-2">
+                    <li><span class="font-bold text-red-600">Mañana libre (calcular estar en el hotel al mediodía):</span> Visitar la Sagrada Familia (si no se hizo el día anterior), Avenida Paseo de Gracia, La Pedrera, Casa Batlló, Plaza Cataluña, Barrio Gótico.</li>
+                </ul>
+                <button class="map-button bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-md shadow-md mt-4 transition duration-300 ease-in-out" onclick="openMapSearch(event, 'Barrio Gótico Barcelona, Catedral de Barcelona, La Pedrera Barcelona, Casa Batlló Barcelona, Plaza Cataluña Barcelona, Costa Azul')">Ver puntos en Mapa</button>
+            </div>
+        </div>
+
+        <!-- DÍA 5 -->
+        <div class="day-card bg-white p-6 mb-6 rounded-lg shadow-md cursor-pointer transform transition duration-300 hover:scale-105" onclick="toggleContent('day5')">
+            <h2 class="text-2xl font-semibold text-green-600 mb-2">DÍA 5: MIÉRCOLES, 11/06 - Costa Azul, Mónaco, Génova, Venecia</h2>
+            <div id="day5" class="day-content hidden pt-4 border-t border-gray-200 mt-4">
+                <p class="mb-3">Distancia total: 630 km. Una de las etapas más hermosas a nivel paisajístico. Se sigue la ribera italiana y se atraviesan los Alpes marítimos. <span class="text-yellow-700 italic">¡Lleve a mano su cámara fotográfica!</span></p>
+                <p class="mb-3">Después del desayuno: Traslado al centro de Niza para breve visita con autobús: Paseo de los Ingleses, Plaza Massena, antiguo puerto.</p>
+                <p class="mb-3">Salida de Niza siguiendo la Cornisa Media. Parada en Eze en la fábrica/museo de perfumes "Fragonard" (recorrido de unos 40 minutos explicando el proceso de fabricación tradicional).</p>
+                <p class="mb-3">11:45 hrs: Llegada a Mónaco. Tiempo para un paseo por el centro del Principado: acantilado, Palacio del Príncipe, Casino, glamour y lujo.</p>
+                <p class="mb-3">13:15 hrs: Salida de Mónaco hacia Italia. Paisajes espectaculares. Parada en área de servicio para almorzar. Continuación por el Valle del Po.</p>
+                <p class="mb-3">21:30 hrs: Llegada a Venecia-Mestre. Hotel normalmente en Mestre.</p>
+                <h3 class="text-xl font-medium text-gray-700 mb-2">Sugerencias para el tiempo libre:</h3>
+                <ul class="list-disc list-inside space-y-2">
+                    <li><span class="text-yellow-700 italic">Este día casi todo es viaje, ir con ropa cómoda, pero listo para tomarse fotitos porque los paisajes son muy bonitos.</span></li>
+                </ul>
+                <button class="map-button bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-md shadow-md mt-4 transition duration-300 ease-in-out" onclick="openMapSearch(event, 'Paseo de los Ingleses Niza, Plaza Massena Niza, Puerto Viejo Niza, Fábrica Fragonard Eze, Palacio del Príncipe Mónaco, Casino de Montecarlo')">Ver puntos en Mapa</button>
+            </div>
+        </div>
+
+        <!-- DÍA 6 -->
+        <div class="day-card bg-white p-6 mb-6 rounded-lg shadow-md cursor-pointer transform transition duration-300 hover:scale-105" onclick="toggleContent('day6')">
+            <h2 class="text-2xl font-semibold text-green-600 mb-2">DÍA 6: JUEVES, 12/06 - Venecia, Florencia</h2>
+            <div id="day6" class="day-content hidden pt-4 border-t border-gray-200 mt-4">
+                <p class="mb-3">Distancia total: 295 km. Paisajes agradables atravesando los Apeninos.</p>
+                <p class="mb-3">08:30 hrs: Salida del hotel (equipaje en el autocar) hacia la terminal del Tronchetto para tomar un barco privado que nos lleva al centro histórico de Venecia. Navegamos por el canal de la Giudecca viendo la maravillosa situación de Venecia.</p>
+                <p class="mb-3">Una vez allí efectuamos la visita a pie de la zona de S. Marcos en la ciudad de Venecia. Con guía local caminamos entorno a la Plaza de San Marcos: Basílica, Campanile ...conoceremos también una popular fábrica de cristal de Murano, donde podremos admirar las técnicas tradicionales de trabajo en vidrio. Tiempo libre posteriormente.</p>
+                <p class="mb-3">17:00 hrs: Salida de Venecia-Tronchetto.</p>
+                <p class="mb-3">20:15 hrs: Llegada a Florencia.</p>
+                <h3 class="text-xl font-medium text-gray-700 mb-2">Sugerencias para el tiempo libre en Venecia:</h3>
+                <ul class="list-disc list-inside space-y-2">
+                    <li>Puente de Rialto (fotos).</li>
+                    <li>Viaje en Góndola.</li>
+                    <li>Museo Da Vinci.</li>
+                    <li>Comprar Murano (medallones, aretes, etc.).</li>
+                    <li><span class="text-yellow-700 italic">No ir al tour de la fábrica de cristal de Murano; preguntar a qué hora deben encontrarse y dónde, para poder pasear y perderse por las callecitas en ese tiempo.</span></li>
+                </ul>
+                <button class="map-button bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-md shadow-md mt-4 transition duration-300 ease-in-out" onclick="openMapSearch(event, 'Plaza de San Marcos Venecia, Basílica de San Marcos Venecia, Campanile de San Marcos Venecia, Puente de Rialto Venecia, Museo Da Vinci Venecia, Fábrica de Cristal de Murano')">Ver puntos en Mapa</button>
+            </div>
+        </div>
+
+        <!-- DÍA 7 -->
+        <div class="day-card bg-white p-6 mb-6 rounded-lg shadow-md cursor-pointer transform transition duration-300 hover:scale-105" onclick="toggleContent('day7')">
+            <h2 class="text-2xl font-semibold text-green-600 mb-2">DÍA 7: VIERNES, 13/06 - Florencia, Roma</h2>
+            <div id="day7" class="day-content hidden pt-4 border-t border-gray-200 mt-4">
+                <p class="mb-3">Distancia realizada: 310 km. Paisajes agradables; poblaciones históricas en el recorrido.</p>
+                <p class="mb-3">08:30 hrs: Traslado al mirador de Michelangelo donde podremos tener una de las vistas más bellas sobre la ciudad. Paramos para tomar una foto antes de iniciar nuestra visita panorámica con guía local de la capital Toscana, una de las ciudades más visitadas del pais, considerada la cuna del Renacimiento y de algunos de los artistas y pensadores más influyentes de la historia, como Leonardo da Vinci, Miguel Ángel, Botticelli o Rafael. La visita se realiza caminando por las calles del centro donde destaca la catedral gótica, (Duomo), el antiguo puente de Piedra (Ponte Vecchio) con sus tiendas de orfebres y la plaza de la Signoria -el corazon politico de la ciudad con el ayuntamiento en edificio medieval. Duración aproximada de la visita 2 horas. Tiempo para pasear y almorzar. Almuerzo incluido para los pasajeros con media pensión.</p>
+                <p class="mb-3">16:30 hrs: Salida de Florencia.</p>
+                <p class="mb-3">20:30 hrs: Llegada a Roma.</p>
+                <h3 class="text-xl font-medium text-gray-700 mb-2">Sugerencias para el tiempo libre:</h3>
+                <ul class="list-disc list-inside space-y-2">
+                    <li><span class="font-bold text-red-600">Buscar un lugar romántico para almorzar (vale la pena), si no, comer un helado.</span></li>
+                    <li>Ir al mercado donde está la "Fontana de Porcellino" (la gente le toca la nariz para buena suerte).</li>
+                    <li>Catedral Santa Maria del Fiore.</li>
+                </ul>
+                <button class="map-button bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-md shadow-md mt-4 transition duration-300 ease-in-out" onclick="openMapSearch(event, 'Mirador de Michelangelo Florencia, Duomo Florencia, Ponte Vecchio Florencia, Piazza della Signoria Florencia, Fontana del Porcellino Florencia')">Ver puntos en Mapa</button>
+            </div>
+        </div>
+
+        <!-- DÍA 8 -->
+        <div class="day-card bg-white p-6 mb-6 rounded-lg shadow-md cursor-pointer transform transition duration-300 hover:scale-105" onclick="toggleContent('day8')">
+            <h2 class="text-2xl font-semibold text-green-600 mb-2">DÍA 8: SÁBADO, 14/06 - Roma</h2>
+            <div id="day8" class="day-content hidden pt-4 border-t border-gray-200 mt-4">
+                <p class="mb-3">Por la mañana: Realizaremos una visita panorámica con guía local de aproximadamente tres horas por la Ciudad Eterna, una de las ciudades más antiguas e influyentes en la civilización occidental. Combinaremos con un paseo a pie por parte de la Roma Imperial, donde conoceremos el Arco de Constantino, el exterior del Coliseo y exterior de los Foros Imperiales, un conjunto arquitectónico que fue el corazón político en la Edad Antigua. En el recorrido en autobús pasaremos por el Circo Máximo, la Iglesia Santa Maria in Cosmedin con la Boca de la Verdad, los Templetes Republicanos, las Termas de Caracalla, la Muralla Aureliana, la Basílica de Santa María la Mayor, San Juan de Letrán, la Iglesia de Santa María in Dominica, la Pirámide Cestia, la Puerta de San Paolo, la Isla Tiberina, la avenida Lungotevere con la Sinagoga judía de estilo babilónico y el Castillo de San Ángel.</p>
+                <p class="mb-3">Este tour finalizará sobre las 11:00 hrs en la Ciudad del Vaticano, estado independiente dentro de la ciudad de Roma y centro de la iglesia católica. Para los viajeros más interesados, nuestro guía le ofrecerá tras la visita panorámica una visita opcional donde podrá conocer con detalle las salas más destacadas de los Museos Vaticanos y la Capilla Sixtina. Tarde libre.</p>
+                <p class="mb-3">18:00 hrs: Al final del día le incluimos un traslado al popular barrio del Trastévere, con sus pequeños restaurantes y su ambiente. Los pasajeros que adquirieron la media pensión tienen la cena incluida. Regreso al hotel, aproximadamente a las 20:30 hrs.</p>
+                <p class="text-yellow-700 italic mb-3">Nota: Debido a la celebración del Año Jubilar, la visita de la ciudad podría verse afectada en su normal desarrollo por las restricciones de movilidad impuestas por la ciudad para cada uno de los diferentes actos.</p>
+                <h3 class="text-xl font-medium text-gray-700 mb-2">Sugerencias para el tiempo libre:</h3>
+                <ul class="list-disc list-inside space-y-2">
+                    <li><span class="text-yellow-700 italic">Tomar la visita al Vaticano (coordinar antes si hay que pagar algo) el tour dentro es por su cuenta, no van con guía, tener en cuenta visitar lo siguiente:</span></li>
+                    <li>Capilla Sixtina (pintura de Miguel Ángel en el techo).</li>
+                    <li>Basílica de San Pedro (preguntar por dónde se va al sótano para que vean los restos de los apóstoles Pedro y Pablo).</li>
+                    <li>Tomar muchas fotos dentro y fuera.</li>
+                    <li><span class="text-yellow-700 italic">Nota: Antes de entrar al Vaticano, en la esquina (creo que el tour les lleva, sino preguntar) la tienda donde venden los rosarios, pedir que los bendigan y los recogen a la salida de su tour en el Vaticano. Las botellitas de agua bendita las pueden comprar y llevar con ustedes para que las llenen dentro del Vaticano.</span></li>
+                    <li><span class="font-bold text-red-600">Al finalizar, almorzar en los alrededores, se sugiere: Spaguetti a la Carbonara y Pizza Margaretta.</span></li>
+                    <li><span class="text-yellow-700 italic">NOTA: Descansar temprano porque el día siguiente caminarán todo el día.</span></li>
+                </ul>
+                <button class="map-button bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-md shadow-md mt-4 transition duration-300 ease-in-out" onclick="openMapSearch(event, 'Arco de Constantino Roma, Coliseo Roma, Foros Imperiales Roma, Circo Máximo Roma, Santa Maria in Cosmedin Roma, Basílica de Santa María la Mayor Roma, Castillo de Sant\'Angelo Roma, Ciudad del Vaticano, Capilla Sixtina, Basílica de San Pedro, Trastevere Roma')">Ver puntos en Mapa</button>
+            </div>
+        </div>
+
+        <!-- DÍA 9 -->
+        <div class="day-card bg-white p-6 mb-6 rounded-lg shadow-md cursor-pointer transform transition duration-300 hover:scale-105" onclick="toggleContent('day9')">
+            <h2 class="text-2xl font-semibold text-green-600 mb-2">DÍA 9: DOMINGO, 15/06 - Día libre (Roma)</h2>
+            <div id="day9" class="day-content hidden pt-4 border-t border-gray-200 mt-4">
+                <p class="mb-3">Hoy le proponemos disfrutar de una excursión opcional, que variará según la época del año. Entre abril y finales de octubre, le invitamos a descubrir la encantadora isla de Capri. Por su parte, entre noviembre y finales de marzo, la excursión le llevará a conocer Nápoles y las fascinantes ruinas de Pompeya.</p>
+                <h3 class="text-xl font-medium text-gray-700 mb-2">Sugerencias para el día libre en Roma:</h3>
+                <ul class="list-disc list-inside space-y-2">
+                    <li><span class="text-yellow-700 italic">Salir temprano, 07:00 am.</span></li>
+                    <li>Coliseo Romano (ver modelo de fotos en pinterest).</li>
+                    <li>Monumento Vittoriano.</li>
+                    <li>Fontana di Trevi.</li>
+                    <li>Panteón.</li>
+                    <li>Piazza Navona.</li>
+                    <li>Caminar por Trastévere.</li>
+                    <li>Puente de Sant'Angelo.</li>
+                </ul>
+                <button class="map-button bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-md shadow-md mt-4 transition duration-300 ease-in-out" onclick="openMapSearch(event, 'Coliseo Romano, Monumento Vittoriano Roma, Fontana di Trevi Roma, Panteón Roma, Piazza Navona Roma, Trastevere Roma, Puente Sant\'Angelo Roma')">Ver puntos en Mapa</button>
+            </div>
+        </div>
+
+        <!-- DÍA 10 -->
+        <div class="day-card bg-white p-6 mb-6 rounded-lg shadow-md cursor-pointer transform transition duration-300 hover:scale-105" onclick="toggleContent('day10')">
+            <h2 class="text-2xl font-semibold text-green-600 mb-2">DÍA 10: LUNES, 16/06 - Roma, Pisa, Turín</h2>
+            <div id="day10" class="day-content hidden pt-4 border-t border-gray-200 mt-4">
+                <p class="mb-3">Distancia total: 680 Km. Paisajes: Hermosas vistas sobre el Mediterráneo.</p>
+                <p class="mb-3">07:30 hrs: Salida de Roma. Breve parada en ruta.</p>
+                <p class="mb-3">12:30 hrs: Llegada a Pisa. Nuestro guía le orientará sobre el recinto monumental de la ciudad. La normativa turística de la ciudad nos obliga a aparcar el autocar en el recinto previsto para ello, este parking se ubica aproximadamente a un kilómetro del recinto monumental, usted puede acceder caminando o en autobusitos urbanos; rogamos observe el número del autobús de cara a su regreso; nuestro guía le informará. Tiempo para conocer el recinto monumental con la torre, la catedral, el batisterio y almorzar.</p>
+                <p class="mb-3">15:00 hrs: Salida de Pisa. Breve parada en el camino.</p>
+                <p class="mb-3">19:30 hrs: Llegada a Torino. Torino es una ciudad de pernocte conveniente por ruta. El tiempo de que disponemos no es suficiente para su visita; pero le aconsejamos dar un paseo por el centro histórico.</p>
+                <h3 class="text-xl font-medium text-gray-700 mb-2">Sugerencias para el tiempo libre:</h3>
+                <ul class="list-disc list-inside space-y-2">
+                    <li><span class="font-bold text-red-600">Pisa – Solo tienen un par de horas, tomarse muchas fotos, ver ideas de foto en pinterest, almorzar o comprar algo para ir comiendo en el bus si no les alcanza el tiempo.</span></li>
+                    <li>Turín - Pasear por el centro histórico.</li>
+                </ul>
+                <button class="map-button bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-md shadow-md mt-4 transition duration-300 ease-in-out" onclick="openMapSearch(event, 'Torre de Pisa, Catedral de Pisa, Baptisterio de Pisa, Centro Histórico Turín')">Ver puntos en Mapa</button>
+            </div>
+        </div>
+
+        <!-- DÍA 11 -->
+        <div class="day-card bg-white p-6 mb-6 rounded-lg shadow-md cursor-pointer transform transition duration-300 hover:scale-105" onclick="toggleContent('day11')">
+            <h2 class="text-2xl font-semibold text-green-600 mb-2">DÍA 11: MARTES, 17/06 - Turín, Ginebra, París</h2>
+            <div id="day11" class="day-content hidden pt-4 border-t border-gray-200 mt-4">
+                <p class="mb-3">Distancia total: 810 km. Paisajes: Muy bonitos al comienzo del día al atravesar los Alpes junto al Monte Blanco. Altas cumbres alpinas con nieve en sus cumbres todo el año. Glaciares.</p>
+                <p class="text-yellow-700 italic mb-3">NOTA: Lleve el pasaporte a mano, en ocasiones puede ser requerido al pasar a Suiza. No olvide llevar su cámara a mano, los paisajes nevados son de gran belleza.</p>
+                <p class="mb-3">07:30 hrs: Salida de Torino. Atravesamos los Alpes pasando junto a la más alta cumbre de montaña de Europa: el Monte Blanco. Túnel muy largo bajo la más alta montaña de la Unión Europea, Paso a Francia. Pasamos por la región de Chamonix, paso a Suiza.</p>
+                <p class="mb-3">11:00 hrs: Ginebra. La capital de la Suiza de habla francesa, activa ciudad a orillas del lago Leman. Tiempo para pasear y almorzar.</p>
+                <p class="mb-3">14:00 hrs: Salida de Ginebra. Atravesamos el centro de Francia viajando hacia París.</p>
+                <p class="mb-3">21:00 hrs: Llegada a París al final del día.</p>
+                <h3 class="text-xl font-medium text-gray-700 mb-2">Sugerencias para el tiempo libre en Ginebra (Aprox 3 horas):</h3>
+                <ul class="list-disc list-inside space-y-2">
+                    <li>Caminar por los alrededores, el guía sugiere la zona, sino preguntar.</li>
+                    <li>El Jet d'Eau (Chorro de Agua).</li>
+                    <li>Catedral de Ginebra.</li>
+                    <li>L'Horloge Fleurie.</li>
+                    <li>Old Town.</li>
+                    <li>Broken Chair.</li>
+                </ul>
+                <button class="map-button bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-md shadow-md mt-4 transition duration-300 ease-in-out" onclick="openMapSearch(event, 'Jet d\'Eau Ginebra, Catedral de Ginebra, L\'Horloge Fleurie Ginebra, Old Town Ginebra, Broken Chair Ginebra')">Ver puntos en Mapa</button>
+            </div>
+        </div>
+
+        <!-- DÍA 12 -->
+        <div class="day-card bg-white p-6 mb-6 rounded-lg shadow-md cursor-pointer transform transition duration-300 hover:scale-105" onclick="toggleContent('day12')">
+            <h2 class="text-2xl font-semibold text-green-600 mb-2">DÍA 12: MIÉRCOLES, 18/06 - París</h2>
+            <div id="day12" class="day-content hidden pt-4 border-t border-gray-200 mt-4">
+                <p class="mb-3">07:45 hrs: Incluimos por la mañana un traslado al Palacio de Versalles (entrada no incluida) donde dispone de 2 horas y media (según hora de llegada variable en función de tráfico) durante las cuales podrá pasear por sus hermosos jardines o visitar su interior si lo desea.</p>
+                <p class="mb-3">11:30 hrs: Regreso a París (la hora podrá variar en función de la hora de llegada a Versalles) donde ofreceremos un traslado al barrio bohemio de Montmartre para poder dar un paseo y disfrutar de este barrio de pequeños restaurantes y artistas al aire libre.</p>
+                <p class="mb-3">15:00 hrs: Tras el almuerzo comenzaremos la visita panorámica de París con un guía local de 2 horas y media de duración. En la visita podrá ver el Arco de Triunfo, Campos Elíseos, Madeleine, Plaza de la Concordia, Ópera, Museo del Louvre, Torre St. Jacques, Ayuntamiento, Isla de la Cité con la catedral de Notre Dame, Barrio Latino, Panteón, Sorbona, jardines de Luxemburgo, Inválidos, Escuela Militar, campo de Marte- Torre Eiffel, orillas del Sena. Realizamos breves paradas junto a los Inválidos y el Campo de Marte.</p>
+                <h3 class="text-xl font-medium text-gray-700 mb-2">Sugerencias:</h3>
+                <ul class="list-disc list-inside space-y-2">
+                    <li><span class="text-yellow-700 italic">Palacio de Versalles:</span> Coordinar con anticipación las entradas con el guía. Priorizar el palacio y los alrededores del palacio, por el tiempo no les dará tiempo de visitar los jardines.</li>
+                    <li><span class="text-yellow-700 italic">Montmartre:</span> Subir hasta arriba y tomar muchas fotos (cuidado con la rodilla). Caminar a los alrededores, bajando de la catedral a la derecha hay restaurantes, probar los caracoles.</li>
+                    <li><span class="font-bold text-red-600">Molino Rojo (Moulin Rouge):</span> Coordinar las entradas con anticipación.</li>
+                </ul>
+                <button class="map-button bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-md shadow-md mt-4 transition duration-300 ease-in-out" onclick="openMapSearch(event, 'Palacio de Versalles, Montmartre París, Arco de Triunfo París, Campos Elíseos París, Museo del Louvre París, Notre Dame París, Torre Eiffel París')">Ver puntos en Mapa</button>
+            </div>
+        </div>
+
+        <!-- DÍA 13 -->
+        <div class="day-card bg-white p-6 mb-6 rounded-lg shadow-md cursor-pointer transform transition duration-300 hover:scale-105" onclick="toggleContent('day13')">
+            <h2 class="text-2xl font-semibold text-green-600 mb-2">DÍA 13: JUEVES, 19/06 - París (Día libre)</h2>
+            <div id="day13" class="day-content hidden pt-4 border-t border-gray-200 mt-4">
+                <p class="mb-3">París –día libre.- Nuestro guía le ofrecerá como actividad opcional para complementar su visita a París un Paseo por el Sena en barco y Barrio Latino. Si prefiere, puede tomarse el día libre y pasear siguiendo su criterio.</p>
+                <h3 class="text-xl font-medium text-gray-700 mb-2">Sugerencias para el Día Libre:</h3>
+                <ul class="list-disc list-inside space-y-2">
+                    <li><span class="text-yellow-700 italic">Visitar lo que se vio en la vista panorámica el día anterior en tren, lo principal sería:</span></li>
+                    <li>Arco de Triunfo.</li>
+                    <li>Campos Elíseos.</li>
+                    <li>Plaza de la Concordia.</li>
+                    <li>Museo del Louvre.</li>
+                    <li>Catedral de Notre Dame.</li>
+                    <li>Panteón.</li>
+                    <li>Jardines de Luxemburgo.</li>
+                    <li>Inválidos.</li>
+                    <li>Campo de Marte.</li>
+                    <li>Torre Eiffel (ir al final del día, para que tomen fotos de día y de noche).</li>
+                    <li>Puente Alexander.</li>
+                    <li>Río Sena.</li>
+                </ul>
+                <button class="map-button bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-md shadow-md mt-4 transition duration-300 ease-in-out" onclick="openMapSearch(event, 'Arco de Triunfo París, Campos Elíseos París, Plaza de la Concordia París, Museo del Louvre París, Catedral de Notre Dame París, Panteón París, Jardines de Luxemburgo París, Torre Eiffel París, Puente Alexandre III París, Río Sena París')">Ver puntos en Mapa</button>
+            </div>
+        </div>
+
+        <!-- DÍA 14 -->
+        <div class="day-card bg-white p-6 mb-6 rounded-lg shadow-md cursor-pointer transform transition duration-300 hover:scale-105" onclick="toggleContent('day14')">
+            <h2 class="text-2xl font-semibold text-green-600 mb-2">DÍA 14: VIERNES, 20/06 - París, Canterbury, Londres</h2>
+            <div id="day14" class="day-content hidden pt-4 border-t border-gray-200 mt-4">
+                <p class="mb-3">Distancia recorrida por carretera: 440 km. Paisajes: grandes llanuras en Francia. Atractiva travesía en barco. Colinas verdes en Reino Unido.</p>
+                <p class="text-yellow-700 italic mb-3">Atención: Recuerde llevar su pasaporte a mano, lo necesitamos en la frontera con Reino Unido. Recomendamos llevar algo de ropa de abrigo para disfrutar de la cubierta en la travesía. Cuando en Francia son las 12 horas en el Reino Unido son las 11 hrs, tendrá que atrasar una hora su reloj. La moneda del Reino Unido es la libra.</p>
+                <p class="mb-3">07:30 hrs: Salida de París. Viajamos hacia el norte de Francia.</p>
+                <p class="mb-3">11:30 hrs: Llegada al puerto de Calais donde tomaremos el ferry para pasar al Reino Unido. Para ello, tendremos que realizar los trámites de aduana y frontera. ¡¡No se olvide llevar el pasaporte a mano!! El ferry que tenemos reservado tiene la salida a las 13:00 hrs. El viaje en barco tiene una duración de una hora y media. Viajará en buques muy modernos con todas las comodidades (restaurantes, bares, salas de descanso, salas de juego, oficinas de cambio, tiendas...).</p>
+                <p class="mb-3">14:00 hrs: Llegada a Dover. Tendremos que cambiar los relojes (una hora antes en el Reino Unido). Desembarco y continuación.</p>
+                <p class="mb-3">14:45 hrs: Canterbury. Llegada a histórica ciudad Patrimonio de la Humanidad, famosa por su impresionante catedral gótica. Tiempo para pasear por su pintoresco centro histórico con sus calles adoquinadas y edificios con entramados de madera de atmósfera acogedora.</p>
+                <p class="mb-3">16:45 hrs: Canterbury, salida.</p>
+                <p class="mb-3">18:30 hrs: Londres. Tiempo libre (en ocasiones podremos brindar por la noche el traslado a Leicester Square, China Town y Soho previsto en programa al día siguiente).</p>
+                <h3 class="text-xl font-medium text-gray-700 mb-2">Sugerencias:</h3>
+                <ul class="list-disc list-inside space-y-2">
+                    <li><span class="font-bold text-red-600">Aprovechar y almorzar en el ferry.</span></li>
+                </ul>
+                <button class="map-button bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-md shadow-md mt-4 transition duration-300 ease-in-out" onclick="openMapSearch(event, 'Catedral de Canterbury, Centro histórico Canterbury, Leicester Square Londres, Chinatown Londres, Soho Londres')">Ver puntos en Mapa</button>
+            </div>
+        </div>
+
+        <!-- DÍA 15 -->
+        <div class="day-card bg-white p-6 mb-6 rounded-lg shadow-md cursor-pointer transform transition duration-300 hover:scale-105" onclick="toggleContent('day15')">
+            <h2 class="text-2xl font-semibold text-green-600 mb-2">DÍA 15: SÁBADO, 21/06 - Londres</h2>
+            <div id="day15" class="day-content hidden pt-4 border-t border-gray-200 mt-4">
+                <p class="mb-3">Visita panorámica de Londres. Iniciamos nuestra visita a primera hora de la mañana. El contenido varía en función a los guías locales, tráfico y climatología. Conocerá: Hyde Park, Oxford St, City, St Pauls catedral, Torre de Londres, Támesis, Picadilly Circus, Parlamento, Abadía de Westminster, Buckingham Palace. Durante la visita pararemos en Buckingham Palace para ver el cambio de guardia (en ocasiones no se realiza esta ceremonia). Final de la visita en punto céntrico de la ciudad.</p>
+                <p class="mb-3">Tarde libre. Nuestro guía le ofrecerá una excursión opcional al castillo de Windsor.</p>
+                <p class="mb-3">18:00 hrs: Al final de la tarde nos citaremos en un punto de encuentro, Piccadilly Circus, para dar a pie con el guía un paseo por Leicester Square, China Town y el Soho con su ambiente, sus teatros y su animación.</p>
+                <p class="mb-3">20:30 hrs: Traslado de regreso al hotel desde Piccadilly.</p>
+                <p class="text-yellow-700 italic mb-3">Nota: En ocasiones efectuaremos este traslado nocturno la víspera, a la llegada a Londres.</p>
+                <h3 class="text-xl font-medium text-gray-700 mb-2">Sugerencias después de la visita panorámica, en lugar de ir al castillo de Windsor, visitar:</h3>
+                <ul class="list-disc list-inside space-y-2">
+                    <li>Puente de la Torre de Londres (cruzar el puente caminando, tomar muchas fotos).</li>
+                    <li>Torre de Londres (histórico) tomarse fotos.</li>
+                    <li>Big Ben (foto desde el puente, por la esquina hay una cabina telefónica donde hacen cola para tomarse foto por que sale de fondo el Big Ben.</li>
+                    <li>London Eye desde el frente (cruzando el rio Tamesis).</li>
+                    <li>Subir a un bus rojo de 2 pisos (de todas maneras).</li>
+                </ul>
+                <button class="map-button bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-md shadow-md mt-4 transition duration-300 ease-in-out" onclick="openMapSearch(event, 'Hyde Park Londres, Oxford Street Londres, St Pauls Cathedral Londres, Torre de Londres, Río Támesis Londres, Piccadilly Circus Londres, Parlamento de Londres, Abadía de Westminster Londres, Buckingham Palace Londres, Puente de la Torre Londres, Big Ben Londres, London Eye Londres')">Ver puntos en Mapa</button>
+            </div>
+        </div>
+
+        <!-- DÍA 16 -->
+        <div class="day-card bg-white p-6 mb-6 rounded-lg shadow-md cursor-pointer transform transition duration-300 hover:scale-105" onclick="toggleContent('day16')">
+            <h2 class="text-2xl font-semibold text-green-600 mb-2">DÍA 16: DOMINGO, 22/06 - Londres</h2>
+            <div id="day16" class="day-content hidden pt-4 border-t border-gray-200 mt-4">
+                <p class="mb-3">Tras el desayuno, concluirán nuestros servicios, con el deseo de haber brindado una experiencia inolvidable.</p>
+                <p class="text-yellow-700 italic mb-3">Nota: Recuerde que el check-out de los hoteles es habitualmente a las 10:00 hrs. En la mayoría de los casos podrá dejar su equipaje en la recepción del hotel a la hora del check-out para así poder disfrutar de la ciudad y recogerla a la hora que lo requiera de ese mismo día. En caso de precisar más tiempo de disposición de la habitación, valore contratar una noche adicional al finalizar su circuito.</p>
+                <h3 class="text-xl font-medium text-gray-700 mb-2">Sugerencias para la mañana libre:</h3>
+                <ul class="list-disc list-inside space-y-2">
+                    <li><span class="text-yellow-700 italic">Su vuelo sale a las 17:00 hrs, o sea tienen la mañana libre, puede salir temprano, a las 7-8 am y a esa hora entregar la habitación y dejar las maletas encargadas en recepción, para que puedan salir a pasear en la mañana y completar lo que no hayan visto. Calcular bien las horas.</span></li>
+                </ul>
+                <button class="map-button bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-md shadow-md mt-4 transition duration-300 ease-in-out" onclick="openMapSearch(event, 'Londres')">Ver puntos en Mapa</button>
+            </div>
+        </div>
+
+        <h2 id="comida" class="section-title text-3xl font-bold text-green-700 border-b-2 border-green-500 pb-2 mb-6 mt-8">Sugerencias Gastronómicas</h2>
+        <div class="day-card bg-white p-6 mb-6 rounded-lg shadow-md">
+            <p class="mb-3">Aquí encontrarás las sugerencias de comida mencionadas en el itinerario:</p>
+            <ul class="list-disc list-inside space-y-2">
+                <li>Madrid: Mesones en Plaza Mayor, Chocolatería San Ginés (churros con chocolate tradicional), Museo del Jamón, El Tigre (bar de tapas, pedir tinto de verano que regalan tapas).</li>
+                <li>Roma: Spaghetti a la Carbonara y Pizza Margherita.</li>
+                <li>París: Caracoles (en Montmartre).</li>
+                <li>En ruta: Aprovechar para almorzar en el ferry de Calais a Dover.</li>
+                <li>General: Buscar lugares románticos para almorzar en Florencia o comer un helado.</li>
+                <li>Pisa: Almorzar o comprar algo para comer en el bus si el tiempo es limitado.</li>
+            </ul>
+        </div>
+
+        <h2 id="consejos" class="section-title text-3xl font-bold text-green-700 border-b-2 border-green-500 pb-2 mb-6 mt-8">Consejos de Viaje Especializados</h2>
+        <div class="day-card bg-white p-6 mb-6 rounded-lg shadow-md">
+            <p class="mb-3">Aquí algunos consejos clave extraídos del itinerario:</p>
+            <ul class="list-disc list-inside space-y-2">
+                <li><span class="text-yellow-700 italic">Check-in y Check-out de hoteles:</span> El check-in suele ser a las 14:00 hrs y el check-out a las 10:00 hrs. Considera una noche adicional si necesitas más tiempo en la habitación al finalizar.</li>
+                <li><span class="text-yellow-700 italic">Equipaje:</span> En la mayoría de los casos, puedes dejar tu equipaje en la recepción del hotel el día del check-out para disfrutar de la ciudad y recogerlo más tarde.</li>
+                <li><span class="text-yellow-700 italic">Documentación:</span> ¡Siempre lleva tu pasaporte a mano! Es necesario al pasar a Suiza y Reino Unido.</li>
+                <li><span class="text-yellow-700 italic">Moneda y Hora:</span> En Reino Unido, la moneda es la libra y la hora se atrasa una hora con respecto a Francia.</li>
+                <li><span class="text-yellow-700 italic">Vestimenta:</span> Lleva ropa cómoda para los días de mucho viaje (como el día 5) pero listo para fotos. Algo de ropa de abrigo para la cubierta del ferry.</li>
+                <li><span class="text-yellow-700 italic">Fotografía:</span> Los paisajes en la ruta Costa Azul-Mónaco-Génova-Venecia y Turín-Ginebra-París son espectaculares. ¡Ten tu cámara lista!</li>
+                <li><span class="text-yellow-700 italic">Planificación:</span> En lugares con tiempo limitado (como Pisa), prioriza lo que quieres ver y busca ideas de fotos con anticipación (ej. Pinterest).</li>
+                <li><span class="text-yellow-700 italic">Vaticano:</span> Coordina si hay que pagar algo para la entrada. El tour dentro es por tu cuenta. No olvides las tiendas de rosarios para bendiciones y las botellitas de agua bendita.</li>
+                <li><span class="text-yellow-700 italic">Descanso:</span> ¡Descansa temprano el día antes de un día de mucha caminata en Roma!</li>
+            </ul>
+        </div>
+
+        <h2 id="mapa-section" class="section-title text-3xl font-bold text-green-700 border-b-2 border-green-500 pb-2 mb-6 mt-8">Mapa Interactivo del Recorrido</h2>
+        <div class="day-card bg-white p-6 mb-6 rounded-lg shadow-md">
+            <p class="mb-3">A continuación, verás un mapa interactivo que visualiza todo tu Eurotrip. Hemos marcado cada uno de los lugares turísticos mencionados en el itinerario con sus coordenadas exactas, y una línea roja muestra el recorrido general entre las ciudades principales.</p>
+            <p class="mb-3">Puedes acercar y alejar el mapa, arrastrarlo para explorar diferentes áreas, y hacer clic en los marcadores para ver el nombre del lugar.</p>
+            <p class="font-semibold text-gray-700">Nota: Para que este mapa funcione correctamente, asegúrate de que tu clave de Google Maps API sea válida y que los servicios de Maps JavaScript API y Directions API estén habilitados en tu cuenta de Google Cloud.</p>
+            <div id="fullItineraryMap" class="h-96 w-full bg-gray-200 rounded-lg shadow-inner mt-4"></div>
+        </div>
+
+        <h2 id="ai" class="section-title text-3xl font-bold text-green-700 border-b-2 border-green-500 pb-2 mb-6 mt-8">Tu Compañero de Viaje ✨</h2>
+        <div class="ai-chat-box bg-blue-50 p-6 rounded-lg shadow-md border border-blue-200">
+            <h3 class="text-2xl font-semibold text-blue-700 mb-3">¡Hola! Soy tu asistente de viaje. ¿En qué puedo ayudarte hoy?</h3>
+            <p class="mb-4 text-gray-700">Pregúntame sobre los lugares de tu itinerario, la moneda local, cómo decir una frase en otro idioma o cualquier otra duda que tengas sobre tu Eurotrip.</p>
+            <div class="flex flex-col sm:flex-row gap-3">
+                <input type="text" id="aiInput" placeholder="Ej: ¿Cómo se dice 'gracias' en francés? o Cuéntame sobre la Torre Eiffel."
+                       class="flex-grow p-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400">
+                <button onclick="askAI()"
+                        class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-md shadow-lg transition duration-300 ease-in-out font-semibold">
+                    Preguntar
+                </button>
+            </div>
+            <div id="loadingIndicator" class="mt-4 text-blue-600 italic text-center" style="display: none;">Cargando respuesta...</div>
+            <p id="aiResponse" class="mt-4 text-gray-800 italic bg-white p-3 rounded-md shadow-inner"></p>
+        </div>
+    </div>
+
+    <footer class="bg-gray-800 text-white text-center p-4 mt-10 rounded-t-xl">
+        <p class="text-sm">Itinerario de Viaje SC01173879 | Desarrollado para Eurotrip 2025</p>
+    </footer>
+
+    <script>
+        // Función para alternar la visibilidad de las secciones de contenido
+        function toggleContent(id) {
+            const element = document.getElementById(id);
+            if (element.classList.contains('hidden')) {
+                element.classList.remove('hidden');
+                element.classList.add('block');
+            } else {
+                element.classList.remove('block');
+                element.classList.add('hidden');
+            }
+        }
+
+        // Función para abrir Google Maps con una búsqueda específica de puntos
+        function openMapSearch(event, locationQuery) {
+            event.stopPropagation(); // Evitar que el clic en el botón cierre la tarjeta del día
+            const googleMapsUrl = `https://www.google.com/maps/search/${encodeURIComponent(locationQuery)}`;
+            window.open(googleMapsUrl, '_blank'); // Abrir en una nueva pestaña
+        }
+
+        // Datos del itinerario con coordenadas aproximadas para la polilínea entre ciudades
+        const itineraryCities = [
+            { name: 'Madrid', lat: 40.416775, lng: -3.703790 },
+            { name: 'Toledo', lat: 39.862832, lng: -4.027323 },
+            { name: 'Zaragoza', lat: 41.648823, lng: -0.889085 },
+            { name: 'Barcelona', lat: 41.385064, lng: 2.173404 },
+            { name: 'Costa Azul (Niza)', lat: 43.710173, lng: 7.261953 },
+            { name: 'Mónaco', lat: 43.738418, lng: 7.424616 },
+            // Génova se considera un punto de tránsito, no necesariamente una parada principal para la línea
+            { name: 'Venecia', lat: 45.440847, lng: 12.315515 },
+            { name: 'Florencia', lat: 43.769560, lng: 11.255814 },
+            { name: 'Roma', lat: 41.902782, lng: 12.496366 },
+            { name: 'Pisa', lat: 43.722838, lng: 10.396597 },
+            { name: 'Turín', lat: 45.070312, lng: 7.686856 },
+            { name: 'Ginebra', lat: 46.204391, lng: 6.143158 },
+            { name: 'París', lat: 48.856614, lng: 2.352222 },
+            { name: 'Canterbury', lat: 51.279899, lng: 1.077227 },
+            { name: 'Londres', lat: 51.507351, lng: -0.127758 }
+        ];
+
+        // Datos de todos los puntos de interés con sus coordenadas exactas
+        const itineraryPointsDetailed = [
+            // Madrid
+            { name: 'Puerta del Sol', lat: 40.4168, lng: -3.7033, city: 'Madrid' },
+            { name: 'Plaza Mayor', lat: 40.4155, lng: -3.7074, city: 'Madrid' },
+            { name: 'Parque del Retiro', lat: 40.4153, lng: -3.6845, city: 'Madrid' },
+            { name: 'Palacio Real', lat: 40.4179, lng: -3.7143, city: 'Madrid' },
+            { name: 'Chocolatería San Ginés', lat: 40.4169, lng: -3.7057, city: 'Madrid' },
+            { name: 'Museo del Jamón', lat: 40.4199, lng: -3.7044, city: 'Madrid' },
+            { name: 'El Tigre', lat: 40.4205, lng: -3.701, city: 'Madrid' },
+            { name: 'Puerta de Alcalá', lat: 40.4204, lng: -3.6884, city: 'Madrid' },
+            { name: 'Mercado de San Miguel', lat: 40.4154, lng: -3.7091, city: 'Madrid' },
+            { name: 'Primark Gran Vía', lat: 40.4203, lng: -3.7058, city: 'Madrid' },
+
+            // Barcelona
+            { name: 'Barrio Gótico', lat: 41.3839, lng: 2.1763, city: 'Barcelona' },
+            { name: 'Plaza Cataluña', lat: 41.387, lng: 2.1701, city: 'Barcelona' },
+
+            // Venecia
+            { name: 'Plaza San Marcos', lat: 45.4342, lng: 12.3389, city: 'Venecia' },
+            { name: 'Puente de Rialto', lat: 45.438, lng: 12.3358, city: 'Venecia' },
+            { name: 'Museo Leonardo da Vinci', lat: 45.4354, lng: 12.3383, city: 'Venecia' },
+
+            // Florencia
+            { name: 'Mirador Michelangelo', lat: 43.7635, lng: 11.2658, city: 'Florencia' },
+            { name: 'Catedral Santa Maria del Fiore', lat: 43.7731, lng: 11.2556, city: 'Florencia' },
+            { name: 'Fontana del Porcellino', lat: 43.7692, lng: 11.2554, city: 'Florencia' },
+            { name: 'Plaza de la Signoria', lat: 43.7696, lng: 11.255, city: 'Florencia' },
+
+            // Roma
+            { name: 'Basílica de San Pedro', lat: 41.9022, lng: 12.4539, city: 'Roma' },
+            { name: 'Capilla Sixtina', lat: 41.9029, lng: 12.4545, city: 'Roma' },
+            { name: 'Trastévere', lat: 41.8896, lng: 12.4701, city: 'Roma' },
+
+            // Pisa
+            { name: 'Torre de Pisa', lat: 43.723, lng: 10.3966, city: 'Pisa' },
+
+            // Ginebra
+            { name: 'Jet d’Eau', lat: 46.2074, lng: 6.1551, city: 'Ginebra' },
+            { name: 'Catedral de Ginebra', lat: 46.2009, lng: 6.1486, city: 'Ginebra' },
+            { name: "L'Horloge Fleurie", lat: 46.204, lng: 6.151, city: 'Ginebra' },
+            { name: 'Old Town', lat: 46.2, lng: 6.15, city: 'Ginebra' },
+            { name: 'Broken Chair', lat: 46.2261, lng: 6.1406, city: 'Ginebra' },
+
+            // París
+            { name: 'Torre Eiffel', lat: 48.8584, lng: 2.2945, city: 'París' },
+            { name: 'Campos Elíseos', lat: 48.8698, lng: 2.3078, city: 'París' },
+            { name: 'Museo del Louvre', lat: 48.8606, lng: 2.3376, city: 'París' },
+            { name: 'Catedral de Notre Dame', lat: 48.8529, lng: 2.35, city: 'París' },
+            { name: 'Arco del Triunfo', lat: 48.8738, lng: 2.295, city: 'París' },
+            { name: 'Palacio de Versalles', lat: 48.8049, lng: 2.1204, city: 'París' },
+            { name: 'Montmartre', lat: 48.8867, lng: 2.3431, city: 'París' },
+            { name: 'Sorbona', lat: 48.8494, lng: 2.343, city: 'París' },
+            { name: 'Jardines de Luxemburgo', lat: 48.8462, lng: 2.3372, city: 'París' },
+            { name: 'Plaza de la Concordia', lat: 48.8656, lng: 2.3211, city: 'París' },
+            { name: 'Panteón', lat: 48.8462, lng: 2.346, city: 'París' },
+            { name: 'Puente Alexander III', lat: 48.8631, lng: 2.3139, city: 'París' },
+
+            // Canterbury
+            { name: 'Catedral de Canterbury', lat: 51.2798, lng: 1.083, city: 'Canterbury' },
+
+            // Londres
+            { name: 'Big Ben', lat: 51.5007, lng: -0.1246, city: 'Londres' },
+            { name: 'London Eye', lat: 51.5033, lng: -0.1196, city: 'Londres' },
+            { name: 'Tower Bridge', lat: 51.5055, lng: -0.0754, city: 'Londres' },
+            { name: 'Torre de Londres', lat: 51.5081, lng: -0.0759, city: 'Londres' },
+            { name: 'Buckingham Palace', lat: 51.5014, lng: -0.1419, city: 'Londres' },
+            { name: 'Piccadilly Circus', lat: 51.5101, lng: -0.134, city: 'Londres' },
+            { name: 'Leicester Square', lat: 51.5108, lng: -0.13, city: 'Londres' },
+            { name: 'Chinatown', lat: 51.5122, lng: -0.13, city: 'Londres' },
+            { name: 'Soho', lat: 51.5136, lng: -0.1319, city: 'Londres' }
+        ];
+
+
+        // Función que inicializa el mapa completo del itinerario
+        function initFullItineraryMap() {
+            // Verifica si google.maps está disponible (significa que la API de Maps se ha cargado)
+            if (typeof google === 'undefined' || typeof google.maps === 'undefined') {
+                console.warn("Google Maps API no está cargada. Asegúrate de incluir el script con tu API Key.");
+                document.getElementById('fullItineraryMap').innerHTML = '<p class="text-center text-gray-600 p-8">El mapa interactivo necesita una clave API de Google Maps para funcionar.</p>';
+                return;
+            }
+
+            // Crear el mapa, centrado en el primer punto del itinerario detallado
+            const map = new google.maps.Map(document.getElementById('fullItineraryMap'), {
+                zoom: 5, // Nivel de zoom inicial
+                center: itineraryPointsDetailed[0], // Centrar en el primer punto detallado (Puerta del Sol)
+                mapTypeId: 'terrain', // Tipo de mapa (roadmap, satellite, hybrid, terrain)
+                fullscreenControl: true, /* Enable fullscreen control */
+                mapTypeControl: true, /* Enable map type control (roadmap, satellite) */
+                streetViewControl: true, /* Enable street view control */
+                zoomControl: true, /* Enable zoom control */
+            });
+
+            // Para almacenar las coordenadas de la ruta general entre ciudades
+            const polylinePathCoordinates = [];
+
+            // Añadir marcadores para cada punto detallado en el itinerario
+            itineraryPointsDetailed.forEach(point => {
+                new google.maps.Marker({
+                    position: { lat: point.lat, lng: point.lng },
+                    map: map,
+                    title: `${point.name} (${point.city})`, // Título del marcador, incluyendo la ciudad
+                    animation: google.maps.Animation.DROP // Animación de caída para los marcadores
+                });
+            });
+
+            // Recopilar coordenadas de ciudades principales para la polilínea del recorrido general
+            itineraryCities.forEach(city => {
+                polylinePathCoordinates.push({ lat: city.lat, lng: city.lng });
+            });
+
+
+            // Dibujar la polilínea que conecta todas las ciudades principales
+            const flightPath = new google.maps.Polyline({
+                path: polylinePathCoordinates,
+                geodesic: true, // Si la línea debe seguir la curvatura de la tierra
+                strokeColor: '#FF0000', // Color de la línea (rojo)
+                strokeOpacity: 0.8, // Opacidad de la línea
+                strokeWeight: 4 // Ancho de la línea
+            });
+
+            flightPath.setMap(map); // Añadir la polilínea al mapa
+
+            // Ajustar el zoom y centro del mapa para que se vean todos los marcadores detallados
+            const bounds = new google.maps.LatLngBounds();
+            itineraryPointsDetailed.forEach(point => {
+                bounds.extend(point);
+            });
+            map.fitBounds(bounds);
+        }
+
+        // Llama a initFullItineraryMap cuando la ventana se carga.
+        // Si la API de Google Maps se carga de forma asíncrona (con 'callback=initFullItineraryMap'),
+        // esta llamada podría ser redundante o generar un error si se llama antes de que la API esté lista.
+        // Lo ideal es que el callback en la URL de la API se encargue de la inicialización.
+        window.onload = initFullItineraryMap;
+
+        // Función asíncrona para interactuar con la IA de Gemini
+        async function askAI() {
+            const input = document.getElementById('aiInput').value.trim(); // Obtener la entrada del usuario y limpiar espacios
+            const responseElement = document.getElementById('aiResponse'); // Elemento para mostrar la respuesta de la IA
+            const loadingIndicator = document.getElementById('loadingIndicator'); // Indicador de carga
+
+            if (!input) {
+                responseElement.textContent = 'Por favor, introduce tu pregunta.';
+                return; // Salir si la entrada está vacía
+            }
+
+            loadingIndicator.style.display = 'block'; // Mostrar el indicador de carga
+            responseElement.textContent = ''; // Limpiar la respuesta anterior
+
+            // Historial de chat inicial para establecer el contexto del asistente de IA
+            // Se le indica que es un compañero de viaje experto y debe responder en español.
+            let chatHistory = [
+                {
+                    role: "user",
+                    parts: [{ text: "Eres un compañero de viaje experto para un eurotrip. Proporciona información útil, consejos, traducciones básicas, y sugerencias basadas en el itinerario proporcionado si se te pregunta sobre lugares específicos. Siempre responde en español. Si se te pide traducir, hazlo directamente. Si se te pregunta por información general, hazlo de forma concisa." }]
+                },
+                {
+                    role: "model",
+                    parts: [{ text: "¡Claro! Estoy listo para ayudarte con tu Eurotrip. ¿Qué te gustaría saber hoy?" }]
+                }
+            ];
+
+            // Añadir la pregunta actual del usuario al historial del chat
+            chatHistory.push({ role: "user", parts: [{ text: input }] });
+
+            try {
+                const payload = { contents: chatHistory }; // Carga útil para la solicitud a la API
+                const apiKey = ""; // La clave de API proporcionada por el usuario
+                const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`; // URL del endpoint de la API de Gemini
+
+                // Realizar la solicitud fetch a la API de Gemini
+                const response = await fetch(apiUrl, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(payload)
+                });
+
+                const result = await response.json(); // Analizar la respuesta JSON
+
+                // Verificar si la respuesta de la API es válida y contiene el texto generado
+                if (result.candidates && result.candidates.length > 0 &&
+                    result.candidates[0].content && result.candidates[0].content.parts &&
+                    result.candidates[0].content.parts.length > 0) {
+                    const text = result.candidates[0].content.parts[0].text;
+                    responseElement.textContent = text; // Mostrar la respuesta de la IA
+                } else {
+                    responseElement.textContent = 'No pude obtener una respuesta. Inténtalo de nuevo.';
+                    console.error('Estructura de respuesta de API inesperada:', result);
+                }
+            } catch (error) {
+                responseElement.textContent = 'Ocurrió un error al comunicarse con la IA. Por favor, revisa tu conexión.';
+                console.error('Error al obtener datos de la API de Gemini:', error);
+            } finally {
+                loadingIndicator.style.display = 'none'; // Ocultar el indicador de carga
+            }
+            document.getElementById('aiInput').value = ''; // Limpiar el campo de entrada
+        }
+    </script>
+</body>
+</html>
